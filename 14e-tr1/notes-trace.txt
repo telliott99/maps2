@@ -1,0 +1,68 @@
+trace-route.py works OK for some
+on others it gets confused and turns around
+
+This seems to happen when the data's bad
+
+What about
+
+- using less precise data
+  maybe that would help to bridge gaps
+
+- keeping track of the direction we're going like degrees
+  we'd know we'd turned around but couldn't get past that problem
+
+- re-starting manually, a few miles past the problem
+
+update:
+
+using precision = 5 (miles) doesn't change the result for I-5
+
+------
+
+I-10:  
+
+this code works, we end up at -81.6798, 30.3252 (Jacksonville) or near enough
+
+I-5:  
+
+both LON and especially LAT should increase
+
+..
+0r	-118.8771, 34.8032	-119.7824, 35.79
+3r	-119.7828, 35.7899	-118.9582, 35.0193
+340r	-118.9582, 35.0193	-118.9515, 35.0052
+200	-118.9515, 35.0052	-118.8817, 34.8178
+..
+
+We've gotten turned around
+
+I am not too sure of the quality of the route
+
+What if we just skip 340? (and its twin, 341)
+Then it just terminates!
+
+Tried starting from the Canadian border
+Got all the way past Portland
+and then got turned around again
+
+I-80
+
+we made it to Chicago before turning around
+
+I-84
+
+lon should steadily decrease
+
+47r	-89.1646, 41.3646	-88.5938, 41.3764
+132r	-88.5938, 41.3764	-88.2522, 41.4629
+65	-88.2522, 41.4631	-87.7926, 41.5511
+153r	-87.7926, 41.5509	-87.5253, 41.577
+262r	-87.5253, 41.5771	-87.5253, 41.577
+154r	-87.5253, 41.5771	-87.7926, 41.5511
+66r	-87.7926, 41.5509	-88.2522, 41.4629
+213r	-88.2522, 41.4631	-88.2986, 41.4616
+139r	-88.2986, 41.4616	-88.5938, 41.3766
+
+got turned around
+
+What if we just skip 262?

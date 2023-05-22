@@ -1,0 +1,47 @@
+so how do we tell if we've turned around?
+ 
+we have a match like t_eq_p (equal or close_enough)
+which we hope is
+
+s <------> t
+           p <---------> q
+
+but q for the new segment lies backward
+
+s <------> t
+     q <-- p
+
+or 
+
+      s <------> t
+q <------------- p
+
+
+either q is between s and t
+or     s is between q and p
+
+but looking at the I-5 problem area
+segments covering the same ground may have different points
+
+so we can't just ask:  is s in p..q or q in s..t
+
+what to do?
+
+- use a bbox
+- compute the direction p -> q and compare with s -> t
+
+in_bbox(t,p,q):
+    def swap(a,b):
+        return (b,a)
+    x1,y1 = p
+    x2,y2 = q
+    if x1 > x2:
+        x1,x2 = swap(x1,x2)
+    if y1 > y2:
+        y1,y2 = swap(y1,y2)
+    x,y = t
+    if x1 < x < x2:
+        if y1 < y < y2:
+            return True 
+    return False
+    

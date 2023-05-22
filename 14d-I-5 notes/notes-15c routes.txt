@@ -1,0 +1,18 @@
+(note: changed dist function so these distances may also change when re-run)
+and so may sorted order
+
+two conclusions this morning
+
+1
+I can solve the wrong way problem by keeping track of *all* the points accumulated so far.  i.e. all the points for each waypoint.
+
+Then check each new segment to see if the endpoint is in the list, already been used.
+
+2
+However I also realized that I'm going to go over the route by hand anyway.  I can see when we get turned around, and manually pick the next segment to use.
+
+So I changed trace-route to start with the route plus the index of the first segment.  That way I can re-start in the middle.
+
+Seems to work fine (see I-5-analysis.txt).
+
+So, the finished product is I-5-route.txt.

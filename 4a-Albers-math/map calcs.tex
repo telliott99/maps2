@@ -1,0 +1,208 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Dropbox/Github/figures/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Map projections and their calculation}
+\date{}
+
+\begin{document}
+\maketitle
+\large
+
+The standard projection used in converting latitudes and longitudes on the (roughly) spherical earth to a planar map depends on what you're projecting.
+
+Most people know about the Mercator projection.  
+
+The one used extensively for the United States is called the Albers Equal-Area Conic projection.
+
+\begin{center} \includegraphics [scale=0.25] {Albers.png} \end{center}
+
+\url{https://en.wikipedia.org/wiki/Albers_projection}
+
+The wikipedia article gives this url
+
+\url{https://pubs.usgs.gov/pp/1395/report.pdf}
+
+I found the same report referenced in this answer to a question on Stack Exchange.
+
+\url{https://gis.stackexchange.com/questions/302635/trying-to-implement-albers-projection-in-python-what-is-going-wrong/302642}
+
+To quote:
+
+\begin{quote}
+The Albers is the projection exclusively used by the USGS for sectional maps of all 50 States of the United States in the National Atlas of 1970, and for other U.S. maps at scales of 1:2,500,000 and smaller. The latter maps include the base maps of the United States issued in ...
+\end{quote}
+
+\subsection*{spherical case}
+
+I'll put the code elsewhere (it's always a pain to format for LaTeX).  This discussion is about implementing the math.
+
+The formulas for the sphere are found on page 100, and those for the ellipsoid are on page 102.  There is a numerical example worked for each, the spherical case is on page 291, and the ellipsoid on page 292.
+
+The idealized spherical earth is a bit easier, so we'll go through that first, and then talk about the earth as an ellipsoid.
+
+In all cases, the letter $\lambda$ is for a longitude with respect to Greenwich (east is positive, for west use a minus sign), while $\phi$ is for a latitude north (or south) of the equator.
+
+We must first pick two reference latitudes:  $\phi_1$ and $\phi_2$.
+
+The standard ones are:
+
+\begin{itemize}
+\item continental U.S. $29.5^{\circ}, 45.5^{\circ}$
+\item Alaska: $55^{\circ}, 65^{\circ}$
+\item Hawaii $8^{\circ},18^{\circ}$
+\end{itemize}
+
+We will also pick a center for the map labeled as longitude $\lambda_0$ and latitude $\phi_0$.  The values for the continental U.S. are ($\lambda_0 = -96.0^{\circ}, \phi_0 = 23.0^{\circ}$).
+
+$R$ is a given constant.  For the spherical case it is $1.0$.  To summarize
+
+\begin{itemize}
+\item $\phi_1 = 29.5^{\circ}$
+\item $\phi_2 = 45.5^{\circ}$
+\item $\lambda_0 = -96.0^{\circ}$
+\item $\phi_0 = 23.0^{\circ}$
+\item $R = 1.0$
+\end{itemize}
+
+We use the above constants to calculate three constants.  The first two depend only on the reference latitudes:
+
+\[ n = \frac{1}{2} \cdot (\sin \phi_1 + \sin \phi_2) \]
+\[ C = \cos^2 \phi_1 + 2n \sin \phi_1 \]
+
+I get
+\[ \sin \phi_1 = \sin 29.5^{\circ} = 0.49242356010346716 \]
+\[ \sin \phi_2 = \sin 45.5^{\circ} = 0.7132504491541816 \]
+\[ n = 0.6028370046288244 \]
+\[ \cos^2 29.5 = 0.7575190374550271 \]
+\[ C = 1.351221325417899 \]
+
+The third is
+\[ \rho_0 =  \frac{R}{n} \ \sqrt{C - 2n \sin \phi_0} \]
+\[ = 1.5562263294996075 \]
+
+$n$ $C$ and $\rho_0$ are the same for all calculations for a given projection center and reference latitudes.
+
+\subsection*{individual values}
+
+The next calculation, for $\rho$, applies to each individual $\phi$:
+
+\[ \rho = \frac{R}{n} \ \sqrt{C - 2n \sin \phi} \]
+
+$\theta$ depends on $\lambda$:
+\[ \theta = n(\lambda - \lambda_0) \]
+
+Given the three values $\theta$, $\rho$ and $\rho_0$, we can calculate $(x,y)$ according to:
+
+\[ x = \rho \sin \theta \]
+\[ y = \rho_0 - \rho \cos \theta \]
+
+So finally, we can process a series of tuples $\phi, \lambda$ to convert them to Cartesian $(x,y)$ coordinates.
+
+Three more values can be calculated:  $h, k$ and $\omega$.  The first two are the scales of the plot, and the $\omega$ is the maximum angular deformation.
+
+This projection preserves areas, but allows deformation of angles.
+
+\subsection*{ellipsoid}
+
+There are two additional factors for the ellipsoid, which I'm guessing relate to the semi-major axis and eccentricity:   $a$ and $e$.
+\[ a = 6378206.4 \]
+\[ e^2 = 0.00676866 \]
+\[ e = 0.0822719 \]
+
+$q_1$ and $q_2$ are calculated based on the reference latitudes $\phi_1$ and $\phi_2$.
+
+\[ q_1 = (1-e^2) \ [ \  \frac{\sin \phi_1}{(1- e^2 \sin^2 \phi_1} \  - \frac{1}{2e} \cdot\ \ln \ \frac{1 - e \sin \phi_1}{1 + e \sin \phi_1} \ ] \]
+
+And the same for $q_2$ and $\phi_2$.
+
+(There was a bit of a challenge interpreting the text as to placement of the brackets.  Luckily, there was a numerical example for guidance.)
+
+\[ m_1 = \frac{\cos \phi_1}{(1 - e^2 \sin^2 \phi_1)^{1/2}} \]
+
+And again the same for $m_2$ and $\phi_2$.
+
+Then
+\[ n = \frac{m_1^2 - m_2^2}{q_2 - q_1} \]
+\[ C = m_1^2 + nq_1 \]
+\[ \rho_0 = \frac{a \sqrt{C - nq_0)} }{n} \]
+
+As before, $n$ $C$ and $\rho_0$ are the same for all calculations for a given projection center and reference latitudes.
+
+\[ \rho = \frac{a \sqrt{C - nq)} }{n} \]
+\[ \theta = n (\lambda - \lambda_0) \]
+
+and as before
+
+\[ x = \rho \sin \theta \]
+\[ y = \rho_0 - \rho \cos \theta \]
+
+Inverse formulas are also given for both cases.  Let us turn to page 291 of the reference.
+
+\subsection*{numerical example, spherical case}
+
+The code is in \textbf{spherical.py}.  The output is:
+
+\begin{verbatim}
+> python3 sphere.py  
+p0: 23.0
+l0:-96.0
+R:  1.00
+p1: 29.5
+p2: 45.5
+n:  0.6028370
+C:  1.3512213
+R0: 1.5562263
+p:  35.0
+l: -75.0
+R:  1.3473026
+t:  12.6595771
+x:  0.2952720
+y:  0.2416774
+>
+\end{verbatim}
+
+This matches the example on page 291.
+
+\subsection*{ellipsoid}
+
+The code is in \textbf{ellipsoid.py}.  The output is:
+
+\begin{verbatim}
+> python3 ellipsoid.py
+test1
+p:  23.0
+l: -96.0
+p1: 29.5
+p2: 45.5
+q0: 0.7767080
+q1: 0.9792529
+q2: 1.4201080
+m1: 0.8710708
+m2: 0.7021191
+n:  0.6029035
+C:  1.3491594
+R0: 9929079.6
+q:  1.1410831
+R:  8602328.3
+t:  12.6609735
+x:  1885472.7
+y:  1535925.0
+>
+\end{verbatim}
+
+This matches the example on page 292-293.
+
+Notice that the units of the ellipsoid projection are much different than for the spherical one.
+
+\end{document} 

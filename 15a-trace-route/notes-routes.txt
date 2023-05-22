@@ -1,0 +1,69 @@
+I went back to re-run the initial data analysis
+
+all_roads.py
+extract.py
+endpoints.py
+
+b/c I changed the dist function, the results are slightly different
+in particular, the order of some of the segments is different for at least some highways.
+
+I did not re-run trace-route1.py and trace-route2.py
+
+I am starting here.
+
+Go back and generate the I-10.txt and I-10-ends.txt for each of the 8 interstates.
+Put it into data-interstates.
+
+5 10 15 25 40 70 80 84
+
+Now:
+
+python3 trace-route.py I-10
+
+First I must edit first-segments.txt
+b/c order of segments has changed for some
+
+I-5  4r
+I-10 115r
+I-15 16
+I-25 12
+I-40 1
+I-70 153
+I-80 227
+I-84 13
+
+plus
+I-5 NS 65
+I-5 second leg 93
+
+---------
+
+We want to analyze what trace-route.py has given us for each target.
+
+We should have one for
+
+I-5 turns around
+I-10 good
+I-15 breaks early
+I-25 good
+I-40 good
+I-70 turns around in St. Louis
+I-80 turns around in Chicago and returns to Portland
+I-84 good
+
+Trim I-70 and I-80 by hand.
+
+I-5 has always been a problem and that's still true.  Startpoint is
+4r gets me to 0r but then it turns around
+Find 92 by eye and then it goes the rest of the way
+
+I-15 goes 3 segments to 0 and then finds 1r coming back
+find 2 by eye
+what happened?
+
+<------------0------------>
+  <----------1------------>
+                           <-------------2
+that's the sort of data that causes problems
+
+search starting with 2 finds the end

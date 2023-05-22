@@ -1,0 +1,20 @@
+Distance formula.
+1 degree of latitude is always 69 miles (neglect ellipsoid)
+1 min of latitude is about 1 mile
+
+1 degree of longitude depends on the latitude.
+equal at the equator, -> 0 at the pole
+standard answer
+https://www.usgs.gov/faqs/how-much-distance-does-a-degree-minute-and-second-cover-your-maps#:~:text=One%20degree%20of%20latitude%20equals,one%20second%20equals%2080%20feet.
+at 38 deg LAT, 1 deg LON equals 54.6 miles
+1 min is a little less than 1 mile 
+
+>>> from math import cos, radians
+>>> f = cos(radians(38))
+>>> f
+0.7880107536067219
+>>> f * 69
+54.37274199886381
+>>> 
+
+I later modified this to use the cosine of the first point passed in

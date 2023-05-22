@@ -1,0 +1,16 @@
+truncated I-10 at El Paso.
+Plot looks good!
+
+However, when I plot I-5, something bad happens.
+
+The problem is that before I was scattering points and order didn't matter.
+
+They were sorted into an order which is not the way they occur in original data.
+
+Now with plotly I've been drawing lines.
+
+Two adjacent points like
+-123.37,43.19
+-123.36,42.48
+
+make a fat vertical line 

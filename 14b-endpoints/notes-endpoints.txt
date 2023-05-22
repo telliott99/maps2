@@ -1,0 +1,110 @@
+b/c it's so large I do not have all_roads.txt saved in Dropbox
+use it from the Desktop
+
+cd /Users/telliott/Library/CloudStorage/Dropbox/Github/maps2/14b-endpoints
+
+
+there's 
+changed the name to all_roads.orig.txt (also all_roads.new.txt)
+
+python3 extract.py I-10
+
+Can also write just the endpoints:
+
+python3 endpoints.py I-10
+
+-----
+
+diff shows there *are* small chanes, not just in distances
+the order of segments has changed in a few places 
+(b/c they were sorted by distance)
+I guess it's OK
+
+-----
+
+I've gone back and re-extracted everything yesterday.
+Extending to US Highways
+
+-----
+
+in the old stuff
+
+I wrote a second script to explore one interstate, I-10.
+exploreOne.py
+
+It filters endpoints.txt for I-10 segments
+then computes the distance covered by each
+doing a rough adjustment for longitude variation.
+
+The results are a bit of a mess.
+Some are really short, some are super long.
+Anywhere between 2-2000 points or so.
+
+I've revised things a bit so I'm repeating the analysis.
+The segments are already sorted by size.
+
+-----
+
+I checked out one that starts just east of Centennial AZ
+and extends west to the California border at -114.5308
+
+According to Google that's about 70 miles.
+It has 617 points:
+
+8
+-113.335, 33.566
+-114.5308, 33.6046
+617
+64.6276
+
+There's another one almost exactly the same endpoints.
+
+9
+-113.3351, 33.5665
+-114.5307, 33.6048
+662
+64.6198
+
+There are two others ending at/near the CA-AZ border
+
+0
+-117.0652, 34.0039
+-114.5308, 33.6046
+1434
+139.5991
+
+1
+-117.0649, 34.0039
+-114.5307, 33.6048
+2277
+139.5874
+
+These end at the California border
+coming from the other direction
+
+starting in Calimesa, CA
+
+According to Google that's about 150 miles.
+It has almost 2300 points.
+
+This is the largest one.
+
+There are 372 LineStrings.
+That's perhaps 20000 points.
+for about 2431 miles.
+
+About 10x what I really need
+
+So now what?
+
+----
+
+How to combine all the LineStrings
+Reducing the data set
+
+First problem?
+Are there overlaps?
+That's hard ... lots of little pieces
+in places, within a group with a W direction
+the direction may change briefly to E
+

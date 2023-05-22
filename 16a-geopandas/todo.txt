@@ -1,0 +1,19 @@
+How to plot only part of an interstate (as a route we've covered)
+
+get the long,lat of the start and endpoints
+/Users/telliott/Library/CloudStorage/Dropbox/Github/maps2/data/us-cities-top-1k.csv
+
+Los Angeles	California	3884307	34.0522342	-118.24368490000000
+El Paso	Texas	674433	31.7775757	-106.44245590000000
+
+find xmin,ymin,xmax,ymax
+
+filter for the particular highway
+
+then
+route = I5.cx[xmin:xmax, ymin:ymax]
+
+this might be better done with just long or just latitude
+so then
+
+pL = filter(df)

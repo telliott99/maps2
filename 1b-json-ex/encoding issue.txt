@@ -1,0 +1,28 @@
+importing GeoJSON US counties including Puerto Rico
+ran into problems b/c it was not encoded as UTF-8
+
+# got GeoJSON counties from another source to check
+
+# invalid utf-8 for '72045' Comer_o, Puerto Rico
+# Puerto Rico municipios
+
+# found the site of the error by loading binary and 
+# searching on the index of the error
+
+This can be fixed by
+
+fn = 'data/geojson-counties-fips.json'
+
+try:
+    fh = open(fn,'r')
+    counties = json.load(fh)
+  
+except UnicodeDecodeError:
+    fh = open(fn,'rb')
+    s = fh.read()
+    data = s.decode('ISO-8859-1')
+    tmp = open('.tmp','w')
+    tmp.write(data)
+    fh = open('.tmp','r')
+    counties = json.load(fh)
+

@@ -1,0 +1,23 @@
+LINEARID                                        1105056901124
+FULLNAME                                               I- 405
+RTTYP                                                       I
+MTFCC                                                   S1100
+geometry    LINESTRING (-122.679601 45.54082199999999, -12...
+Name: 3, dtype: object
+
+[-122.679601, -122.679677, -122.67972900000001]
+
+      RTTYP FULLNAME
+3         I   I- 405
+4         I   I- 405
+5         I    I- 70
+10        I    I- 29
+18        I    I- 85
+...     ...      ...
+12490     I    I- 69
+12491     I    I- 69
+12492     I    I- 69
+12503     I    I- 25
+12504     I    I- 25
+
+[6016 rows x 2 columns]

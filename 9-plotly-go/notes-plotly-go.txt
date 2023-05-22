@@ -1,0 +1,11 @@
+to make this work I corrected a typo in 
+counties.lg.geo.txt
+
+Lassen County
+CA
+-119.999585	41.011915x
+
+Its not in the parent file so I guess I did that at one point.
+
+Also changed the reference version.
+

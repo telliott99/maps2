@@ -1,0 +1,21 @@
+original data is in this file:
+tl_2019_us_primaryroads.zip
+
+from this directory:
+
+python3 all_roads.py > ~/Desktop/all_roads.txt
+
+takes 10-15 seconds
+
+a diff shows that all_roads.txt produced today is 
+not the same as that produced May 15, 5 days ago
+
+but the change appears to be limited to distances
+I don't remember modifying utils.dist code but I guess maybe I did
+
+I think I see the difference in utils.dist
+Now we compute the cosine of the latitude of the first point
+I think previously we just used 38 degrees for all
+Obviously, that would cause small changes to distances
+
+In the end, I decided to drop the distance calc for this script.

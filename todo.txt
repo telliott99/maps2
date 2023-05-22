@@ -1,0 +1,22 @@
+try out plotting what you have
+
+add cities
+
+write code to check backtracking
+bundle extract, endpoints, find-start, trace-route, 
+
+add more
+
+I
+8
+86
+90
+
+US 
+101
+160
+191
+395
+491
+
+Colorado routes

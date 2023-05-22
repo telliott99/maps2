@@ -1,0 +1,35 @@
+shapefiles is kind of the official file type
+US Census uses it
+
+binary
+not sure yet how encoded
+
+actually usually a zipfile with at least 3 files inside
+https://www.usna.edu/Users/oceano/pguth/md_help/html/shapefile.htm
+
+https://mygeodata.cloud/converter/
+
+geopandas speaks shapefile
+
+
+https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2017/TGRSHP2017_TechDoc_Ch2.pdf
+
+.shp – the feature geometry
+.shx – the index of the feature geometry
+.cpg – used to identify character encoding
+.dbf – the tabular attribute information
+.prj – the coordinate system information
+.shp.xml – the Federal Geographic Data Committee (FGDC) metadata
+.shp.iso.xml - the International Organization for Standardization (ISO 191) metadata
+.shp.ea.iso.xml - the ISO 191 (entity and attribute) metadata
+
+Each zipped relationship file consists of the following four files:
+
+.cpg – used to identify character encoding
+.dbf – the tabular attribute information
+.dbf.xml – the Federal Geographic Data Committee (FGDC) metadata
+.dbf.iso.xml - the International Organization for Standardization (ISO 191) metadata
+.dbf.ea.iso.xml - the ISO 191 (entity and attribute) metadata
+
+
+

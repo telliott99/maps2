@@ -1,0 +1,14 @@
+I completely rewrote the script to calculate
+Albers spherical and ellipsoid projections
+using the standard US reference latitudes 29.5 and 45.5
+and centroid -96.0 23.0
+
+I get the same answers
+There were a couple typos in the old write-up
+
+The q formula is tricky
+The leading term (1 - e^2) multiplies the whole rest of the formula
+
+The main question I have is why the units are so different for ellipsoid v. spherical
+
+The new script is better annotated, I think.  It is called Albers.py.

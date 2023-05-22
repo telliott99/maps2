@@ -1,0 +1,13 @@
+I have a geojson file obtained from
+https://eric.clst.org/tech/usgeojson/
+
+On the same page are links for shp and kml filetypes as well.
+
+It's all in 
+maps2/Celeste/
+e.g.
+coutnies.sm.json
+
+open-close.py
+deals with the Unicode error by rewriting file as UTF-8
+

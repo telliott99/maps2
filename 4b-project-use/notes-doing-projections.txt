@@ -1,0 +1,25 @@
+I wrote a new script called Albers.py.
+I think its also better annotated.
+
+However, I also saved the old one here as well:  ellipsoid.py
+It works fine.
+
+There is a slight discrepancy which is not explained yet.
+
+#-----
+
+I had forgotten, but there is software that does these calculations called
+
+https://proj.org
+
+I installed it with Homebrew (2020) --- see the blog post.
+
+#-----
+
+Let's go ahead a re-do a test from 2020.
+python3 map_counties.py counties.geo.txt AL
+
+I will have to edit a bit b/c covid_base has changed
+
+Output looks good.
+Note:  uses plotly graph objects

@@ -1,0 +1,107 @@
+This example shows geopandas loading a shapefile for US highways
+
+from the US Census (I think)
+tl_2016_us_primaryroads.zip
+
+https://catalog.data.gov/dataset/tiger-line-shapefile-2016-nation-u-s-primary-roads-national-shapefile/resource/d983eeef-21d9-4367-9d42-27a131ee72b8
+
+>>> df.loc[3]
+LINEARID                                        1105056901124
+FULLNAME                                               I- 405
+RTTYP                                                       I
+MTFCC                                                   S1100
+geometry    LINESTRING (-122.679601 45.54082199999999, -12...
+Name: 3, dtype: object
+>>>
+
+
+I- 405 (note:  with space)
+is a LINESTRING
+
+https://en.wikipedia.org/wiki/GeoJSON
+
+
+>>> f = df.loc[3]
+>>> type(f)
+<class 'pandas.core.series.Series'>
+>>> 
+
+so the feature has a geometry that is of type LINESTRING
+
+>>> g = f['geometry']
+>>> g
+<LINESTRING (-122.68 45.541, -122.68 45.541, -122.68 45.541, -122.68 45.54, ...>
+>>> 
+
+-----
+
+Obtaining the coordinates:
+
+>>> X,Y = f['geometry'].xy
+>>> X
+array('d', [-122.679601, -122.679677, ...
+
+use list to generate a Python list:
+>>> list(X)
+[-122.679601, -122.679677, ...
+
+
+can also do f['geometry'].coords.xy
+generate the tuple with Python zip
+
+>>> L = zip(X,Y)
+>>> L
+<zip object at 0x15b4aff80>
+>>> print(L)
+<zip object at 0x15b4aff80>
+>>> list(L)
+[(-122.679601, 45.54082199999999), (-122.679677, 45.54077199999999),
+
+-----
+
+SEL = df['RTTYP'] == 'I'
+sub = df[SEL]
+
+>>> sub['RTTYP']
+3        I
+4        I
+5        I
+10       I
+18       I
+        ..
+12490    I
+12491    I
+12492    I
+12503    I
+12504    I
+Name: RTTYP, Length: 6016, dtype: object
+>>>
+
+>>> sub[['RTTYP','FULLNAME']]
+      RTTYP FULLNAME
+3         I   I- 405
+4         I   I- 405
+5         I    I- 70
+10        I    I- 29
+18        I    I- 85
+...     ...      ...
+12490     I    I- 69
+12491     I    I- 69
+12492     I    I- 69
+12503     I    I- 25
+12504     I    I- 25
+
+[6016 rows x 2 columns]
+>>>
+
+-----
+
+Wondering about how to extract the data I want.
+
+https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
+
+Iteration over DataFrame is an *antipattern*
+Nevertheless, it can be done!
+
+
+

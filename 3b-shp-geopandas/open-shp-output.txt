@@ -1,0 +1,18 @@
+> python3 open-shp.py
+0                 Arizona
+1                Arkansas
+2              California
+3                Colorado
+4             Connecticut
+5    District of Columbia
+Name: NAME, dtype: object
+
+Index(['GEO_ID', 'STATE', 'NAME', 'LSAD', 'CENSUSAREA', 'geometry'], dtype='object')
+
+(-107.317794057388, 41.00295740871)
+(-107.000606, 41.003443999999995)
+(-106.85777193794601, 41.0030816553615)
+(-106.453859, 41.002057)
+(-106.43956299999999, 41.001978)
+
+>

@@ -1,0 +1,48 @@
+''' 
+        this code doesn't work!
+
+        # problem:  new segment may be *close_enough*
+        # on one end yet overlap prev
+        # if the match is t to q then
+        
+        # new point p may lie "before" or "after" s
+        # if after then p should be in the bbox for s,t
+        
+        pq_bbox = utils.bbox(p,q)
+        st_bbox = utils.bbox(s,t)
+        
+        # s should never be in the bbox for p,q
+        if is_in_bbox(s, pq_bbox):
+            if v:  print('wrong way match:  s in pq')
+            if v:  
+                print('j:  ', j)
+                print('p:  ', p)
+                print('q:  ', q)
+            seen_before.append(j)
+            continue
+                
+        # match is to q
+        # maybe p lies to the left of p
+        if close_enough(q,t):
+            # check if p is in bbox for s,t
+            if is_in_bbox(p,st_bbox):
+                if v:  print('wrong way match:  p in st')
+                if v:  
+                    print('j:  ', j)
+                    print('p:  ', p)
+                    print('q:  ', q)
+                seen_before.append(j)
+                continue
+                                  
+        # if p is the match      
+        if close_enough(p,t):
+           # check if q is in bbox for s,t
+           if is_in_bbox(q,st_bbox):
+               if v:  print('wrong way match:  q in st')
+               if v:  
+                   print('j:  ', j)
+                   print('p:  ', p)
+                   print('q:  ', q)
+               seen_before.append(j)
+               continue
+'''                                                                 

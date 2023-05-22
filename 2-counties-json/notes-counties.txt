@@ -1,0 +1,26 @@
+I obtained county GeoJSON data from the plotly github repo
+using a URL given in their write-up, and saved it to disk for reuse.
+
+I don't have a note of what the original URL was.
+But I found some docs here:
+
+https://plotly.com/python/map-configuration/
+
+I suspect this is the URL
+https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json
+
+referenced from this page
+https://plotly.com/python/choropleth-maps/
+
+diff gives 0 changes so yes
+
+----
+
+The Python json module can load this file and parse into dicts, etc.
+
+I wrote a script read-counties.py
+that can produce plain text from the data.
+
+The result is in counties.txt.
+
+The state_data.py file contains FIPS numbers for the states and territories.  There's more in the covid project.

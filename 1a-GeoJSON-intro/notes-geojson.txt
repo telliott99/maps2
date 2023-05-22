@@ -1,0 +1,47 @@
+GeoJSON organizes geo data
+It's just json:  dicts and arrays, etc.
+
+https://en.wikipedia.org/wiki/GeoJSON
+A GeoJSON FeatureCollection has Features
+
+A Feature has type, geometry, properties keys
+geometry has type, coordinates keys
+
+Here is a GeoJSON geometry of type Polygon
+
+"geometry": {
+  "type": "Polygon",
+
+  "coordinates": [
+      [
+        [100.0, 0.0],
+        [101.0, 0.0],
+        [101.0, 1.0],
+        [100.0, 1.0],
+        [100.0, 0.0]
+      ]
+    ]
+
+Note the double brackets.
+If we had a reference to this feature as f
+we might do
+
+f['geometry']['coordinates'] 
+to access the coordinates
+
+----
+
+An example is extract_counties.py
+(next section)
+
+There are various ways to work with JSON data
+json module
+
+'wiki_example.json'
+doesn't work with json, not sure why yet
+
+in my old stuff I got GeoJSON files from:
+https://eric.clst.org/tech/usgeojson/
+
+which he got by converting shapefiles
+one of the official file types

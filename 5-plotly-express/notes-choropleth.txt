@@ -1,0 +1,8 @@
+This uses the high-level interface to plotly.
+
+import plotly.express as px
+fig = px.choropleth(
+
+The data is all from them
+
+scope limits the output to the 'usa'

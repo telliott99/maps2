@@ -1,0 +1,21 @@
+combine.py
+gets all the points from all the features
+sets precision to 2 digits
+removes dupes
+
+there are 4676 points
+with precision = 1 there were about 400
+
+The trace looks reasonable
+endpoints are correct
+
+Add the filter code into combine2.py
+
+Next steps:
+
+- get LON/LAT for waypoints
+- write code to filter I data for waypoints
+- figure out how to project correctly
+- figure out how to add geojson as a plotly layer
+
+- do this for all "my" interstates

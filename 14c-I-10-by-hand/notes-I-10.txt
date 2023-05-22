@@ -1,0 +1,32 @@
+notes on I-10 as first test case
+
+Santa Monica endpoint is about -118.495
+CA-AZ state line is about -114.531, 33.605
+
+so the first (largest) piece goes to CA-AZ border
+left end is at -117.065, 34.004 near Calimesa
+second piece has same endpoints! 
+
+first piece starting in Santa Monica is
+
+113
+-118.2143, 34.0551
+-118.4906, 34.0126
+493
+15.2073
+
+last piece ending in Jacksonville is
+
+93
+-81.6803, 30.3244
+-82.0372, 30.2838
+280
+19.4739
+
+The next step is to try to piece it all together
+making a route
+
+What I patched together by hand (see 14e)
+matches what trace-route gave later (see 15b)
+
+----

@@ -1,0 +1,24 @@
+'''
+def LON_LAT_for_city(city):
+    D = {
+         'El Paso': '-106.5193, 31.7859',
+         'Jacksonville':'-81.6877, 30.3210',
+         'San Diego': '-117.1233, 32.6938',
+         'San Francisco': '-122.4051,37.7687',
+         'Santa Monica': '-118.4906, 34.0126',
+         'San Ysidro':'-117.0360, 32.5457'
+        }
+    return D[city]
+
+if target == 'I-10':
+    t = LON_LAT_for_city('Santa Monica')
+    
+elif target == 'I-5':
+    t = LON_LAT_for_city('San Ysidro')
+    
+elif target == 'I-15':
+    t = LON_LAT_for_city('San Diego')
+
+elif target == 'I-80':
+    t = LON_LAT_for_city('San Francisco')
+'''  

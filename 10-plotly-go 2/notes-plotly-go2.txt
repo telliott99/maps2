@@ -1,0 +1,14 @@
+The first version is missing LA county and also Ventura, San Francisco and one more.
+b/c MultiPolygons weren't handled correctly in making the data file.
+
+counties.lg.json
+take read-counties2.py and change input
+
+python3 read-counties.py > counties.lg.geo.txt
+
+must also modify to deal with UnicodeDecodeError
+that works
+
+however, noticed Alabama is missing counties in the .json files??
+
+and counties are still missing in California!

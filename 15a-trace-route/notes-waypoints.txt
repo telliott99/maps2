@@ -1,0 +1,36 @@
+We want to analyze what trace-route.py has given us for each target.
+
+We should have one for
+
+I-5 turns around
+I-10 good
+I-15 breaks early
+I-25 good
+I-40 good
+I-70 turns around in St. Louis
+I-80 turns around in Chicago and returns to Portland
+I-84 good
+
+Trim I-70 and I-80 by hand.
+
+I-5 has always been a problem and that's still true.  Startpoint is
+4r gets me to 0r but then it turns around
+Find 92 by eye and then it goes the rest of the way
+
+I-15 goes 3 segments to 0 and then finds 1r coming back
+find 2 by eye
+what happened?
+
+<------------0------------>
+  <----------1------------>
+                           <-------------2
+that's the sort of data that causes problems
+
+search starting with 2 finds the end
+
+------
+
+Trying to extend this to US Highway 101
+I don't think it's going to work.
+The pieces are too small.
+Maybe sort the segments by endpoints and then pick by hand?
